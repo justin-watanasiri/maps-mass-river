@@ -1,7 +1,9 @@
 import requests
 from request_helpers import *
 
-x = searchByText('rivers Medford, MA')
+searchString = 'rivers Medford, MA'
+
+x = searchByText(searchString)
 xJSON = x.json()
 
 #print(x.text)
