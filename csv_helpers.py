@@ -22,9 +22,31 @@ def createCSV(filename):
     else:
         print(f"File {filepath} already exists")
 
+def processData(rawData):
+    #rawJSON = rawData.json()
+    finishedData = []
+    finishedData.append('') #river_id to be filled in later
+    finishedData.append('') #activity to be filled in later
+    finishedData.append(rawData['displayName']['text'])
+    townName = rawData['formattedAddress'].split(',')[1].strip()
+    finishedData.append(townName)
+    finishedData.append(rawData['formattedAddress'])
+    finishedData.append('') #Description left blank
+    finishedData.append(rawData['googleMapsLinks']['placeUri'])
+    finishedData.append('') #Link left blank
+    finishedData.append('') #Image left blank
+    finishedData.append(rawData['location']['latitude'])
+    finishedData.append(rawData['location']['longitude'])
+    return finishedData
+
+
+#Takes in an array of arrays and appends it to the CSV file. Example:
+#[['1', 'activity', 'Assonet River', 'Freetown', 'Assonet River, Freetown, MA 02702, USA', 'description', 'google-map', 'link', 'image', '41.79', '-71.06'],
+#['2', 'activity2', 'Assonet River2', 'Freetown2', 'Assonet River2, Freetown2, MA 02702, USA', 'description2', 'google-map2', 'link2', 'image2', '41.79', '-71.06']]
 def populateCSV(filename, data):
-    filepath = os.path.join(os.path.dirname(__file__), filename)
+    filepath = os.path.join(os.path.dirname(__file__), "CSV_Dump", filename)
     # Check if the file exists
+    print('filepath is: ', filepath)
     if os.path.exists(filepath):
         with open(filepath, 'a', newline='') as file:
             writer = csv.writer(file)

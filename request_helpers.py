@@ -29,7 +29,7 @@ def searchByText(searchText):
     headers = {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': apiKey,
-        'X-Goog-FieldMask': 'places.displayName,places.location,places.location,places.types,places.formattedAddress'
+        'X-Goog-FieldMask': 'places.displayName,places.location,places.location,places.types,places.formattedAddress,places.googleMapsLinks,places.reviews'
     }
 
     payload = {
