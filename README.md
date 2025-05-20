@@ -13,7 +13,7 @@
 
 # Create a virtual environment
 1. Create a virtual environment with the following command in your terminal: "python -m venv .venv"
-2. Activate the virtual environment with the following command: ".\.venv\Scripts\activate"
+2. Activate the virtual environment with the following command: ".\\.venv\Scripts\activate"
 3. Activiation was successful if "(.venv)" now appears at the start of your terminal prompt
 
 # Updating pip
@@ -32,6 +32,9 @@ VSCode will display one or more options; choose the one with (.venv)
 5. In your terminal navigate to the folder you just created with "cd {filepath}" (no brackets)
 
 Alternatively, you can achieve the same thing as steps 1-5 by navigating to the directory you want the folder to be inside of in your terminal and using the the following command: "git clone https://github.com/justin-watanasiri/maps-mass-river.git"
+
+# Installing requirements
+1. In your terminal, run the following command: "pip install -r requirements.txt"
 
 # Getting an API key
 1. In order to run this script (which depends on the google maps/places API) you will need to create a free cloud account. A free account is good for 90 days and a $300 credit. Using this script should not get you anywhere close to the credit limit 
