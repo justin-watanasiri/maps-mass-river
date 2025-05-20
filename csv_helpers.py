@@ -23,22 +23,26 @@ def createCSV(filename):
         print(f"File {filepath} already exists")
 
 def processData(rawData):
-    #rawJSON = rawData.json()
     finishedData = []
-    finishedData.append('') #river_id to be filled in later
-    finishedData.append('') #activity to be filled in later
-    finishedData.append(rawData['displayName']['text'])
-    townName = rawData['formattedAddress'].split(',')[1].strip()
-    finishedData.append(townName)
-    finishedData.append(rawData['formattedAddress'])
-    finishedData.append('') #Description left blank
-    finishedData.append(rawData['googleMapsLinks']['placeUri'])
-    finishedData.append('') #Link left blank
-    finishedData.append('') #Image left blank
-    finishedData.append(rawData['location']['latitude'])
-    finishedData.append(rawData['location']['longitude'])
+    for loc in rawData:
+        locData = [
+            '',  # river_id to be filled in later
+            '',  # activity to be filled in later
+            loc['displayName']['text'],
+            loc['formattedAddress'].split(',')[1].strip(),  # townName
+            loc['formattedAddress'],
+            '',  # Description left blank
+            loc['googleMapsLinks']['placeUri'],
+            '',  # Link left blank
+            '',  # Image left blank
+            loc['location']['latitude'],
+            loc['location']['longitude']
+        ]
+        finishedData.append(locData)
+        # Optional debug info
+        #print('locData is: ', locData)
+    #print('finishedData is: ', finishedData)
     return finishedData
-
 
 #Takes in an array of arrays and appends it to the CSV file. Example:
 #[['1', 'activity', 'Assonet River', 'Freetown', 'Assonet River, Freetown, MA 02702, USA', 'description', 'google-map', 'link', 'image', '41.79', '-71.06'],
