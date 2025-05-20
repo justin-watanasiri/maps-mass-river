@@ -1,5 +1,6 @@
 import requests
 from request_helpers import *
+from csv_helpers import *
 
 searchString = 'Assonet River activities MA'
 
@@ -10,4 +11,5 @@ xJSON = x.json()
 print('first place found is:')
 print(xJSON['places'][1])
 
+createCSV('test.csv')
 

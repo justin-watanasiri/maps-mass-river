@@ -1,4 +1,5 @@
 import os
+import csv
 
 
 def createCSV(filename):
@@ -20,3 +21,13 @@ def createCSV(filename):
             pass
     else:
         print(f"File {filepath} already exists")
+
+def populateCSV(filename, data):
+    filepath = os.path.join(os.path.dirname(__file__), filename)
+    # Check if the file exists
+    if os.path.exists(filepath):
+        with open(filepath, 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows(data)
+    else:
+        print(f"File {filepath} does not exist. Please create it first.")
