@@ -7,22 +7,10 @@
 2. Open VSCode and open a terminal (Terminal > New Terminal)
 3. Verify that python was installed correctly by running the following command in the terminal: "python --version"
 4. Terminal should repond with "Python 3.13" or something similar
-5. If you get an error like "python is not a recognized command" you will have to add python to your PATH
-6. Follow the instructions here for your OS https://realpython.com/add-python-to-path/
-7. Reboot your terminal after following the instructions and try running "python --version" again
-
-# Create a virtual environment
-1. Create a virtual environment with the following command in your terminal: "python -m venv .venv"
-2. Activate the virtual environment with the following command: ".\\.venv\Scripts\activate"
-3. Activiation was successful if "(.venv)" now appears at the start of your terminal prompt
-
-# Updating pip
-1. In your terminal (which should be using your virtual environment) enter the following command: "python -m pip install --upgrade pip"
-
-# Ensure VSCode is using the right Python interpreter
-1. In VSCode open the command palette (ctrl+shift+P in windows, command+shift+P in macos)
-2. Start typing "Python: Select Interpreter" and select the option when it appears
-VSCode will display one or more options; choose the one with (.venv)
+5. If the command in step 3 fails try "python3 --version"
+6. If you get an error like "python is not a recognized command" you will have to add python to your PATH
+7. Follow the instructions here for your OS https://realpython.com/add-python-to-path/
+8. Reboot your terminal after following the instructions and try running "python --version" again
 
 # Downloading the code
 1. Navigate to this page: https://github.com/justin-watanasiri/maps-mass-river
@@ -30,6 +18,21 @@ VSCode will display one or more options; choose the one with (.venv)
 3. Select "Download Zip" option
 4. Unzip folder to a location of your choosing
 5. In your terminal navigate to the folder you just created with "cd {filepath}" (no brackets)
+
+# Create a virtual environment
+1. Create a virtual environment with the following command in your terminal: "python -m venv .venv"
+2. Activate the virtual environment with the following command: ".venv/Scripts/activate"
+3. On mac, try the command "source .venv/bin/activate"
+4. Activiation was successful if "(.venv)" now appears at the start of your terminal prompt
+
+# Updating pip
+1. In your terminal (which should be using your virtual environment) enter the following command: "python -m pip install --upgrade pip"
+
+# Ensure VSCode is using the right Python interpreter
+1. First, install the python extension for VSCode (View > Extensions > Search for "Python")
+2. In VSCode open the command palette (ctrl+shift+P in windows, command+shift+P in macos)
+3. Start typing "Python: Select Interpreter" and select the option when it appears
+VSCode will display one or more options; choose the one with (.venv)
 
 Alternatively, you can achieve the same thing as steps 1-5 by navigating to the directory you want the folder to be inside of in your terminal and using the the following command: "git clone https://github.com/justin-watanasiri/maps-mass-river.git"
 
@@ -49,3 +52,9 @@ IMPORTANT: This API key should not be shared with anyone outside of your organiz
 2. Open the "main.py" file
 3. Near the top of the file you will see a variable named "searchString". This string is what the places API will search for. Edit this variable to change the area that this script will search. Possible entries would be 'rivers Medford, MA", 'rivers Somerville, MA" etc
 4. To run this script, go to Run > Run without Debugging
+
+# Getting updated versions of the code
+In order to retrieve the latest version of the code as I make changes you'll need to use git
+1. Install homebrew here: https://brew.sh/
+2. Install git with "brew install git"
+3. Get my latest changes with "git fetch" and then "git pull"

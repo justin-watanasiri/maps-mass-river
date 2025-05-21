@@ -1,7 +1,6 @@
 import os
 import csv
 
-
 def createCSV(filename):
     # Create data directory if it doesn't exist
     data_dir = os.path.join(os.path.dirname(__file__), 'CSV_Dump')
@@ -25,9 +24,14 @@ def createCSV(filename):
 def processData(rawData):
     finishedData = []
     for loc in rawData:
+        activities = extractActivities(loc)
+
+        # Convert dictionary to string of True activities
+        activity_string = ', '.join([key for key, value in activities.items() if value])
+
         locData = [
             '',  # river_id to be filled in later
-            '',  # activity to be filled in later
+            activity_string,  # activity to be filled in later
             loc['displayName']['text'],
             loc['formattedAddress'].split(',')[1].strip(),  # townName
             loc['formattedAddress'],
@@ -43,6 +47,55 @@ def processData(rawData):
         #print('locData is: ', locData)
     #print('finishedData is: ', finishedData)
     return finishedData
+
+
+def extractActivities(locData):
+    activityList = ['hike, walk, and run', 'swimming', 'paddling', 'boating and sailing', 'fishing']
+    hwrAlias = ['hiking', 'hike', 'hiker', 'walk', 'run', 'running', 'walking', 'stroll', 'jog', 'playground', 'trail', 'path']
+    swimAlias = ['swim', 'swimming', 'swimmer']
+    paddlingAlias = ['paddle', 'paddling', 'kayak', 'canoe', 'canoeing']
+    boatingAlias = ['boat', 'boating', 'sail', 'sailing']
+    fishingAlias = ['fish', 'fishing' ]
+    foundActivities = {activity: False for activity in activityList}  # Initialize all activities as False
+        
+    # Check if reviews exist
+    if 'reviews' not in locData:
+        print("No reviews found for this location")
+        return ''
+
+    for review in locData['reviews']:
+        # Safely get nested text
+        # not all reviews have a text field (if the reviewer didn't leave a comment it doesn't just have a blank field, it has no field at all)
+        # This is a decision I don't understand but it is what it is
+        if 'text' in review and isinstance(review['text'], dict) and 'text' in review['text']:
+            review_text = review['text']['text'].lower()
+        else:
+            print(f"Unexpected review structure: {review}")
+            continue
+        
+        for alias in hwrAlias:
+            if alias in review_text:
+                foundActivities['hike, walk, and run'] = True
+                break
+        for alias in swimAlias:
+            if alias in review_text:
+                foundActivities['swimming'] = True
+                break
+        for alias in paddlingAlias:
+            if alias in review_text:
+                foundActivities['paddling'] = True
+                break
+        for alias in boatingAlias:
+            if alias in review_text:
+                foundActivities['boating and sailing'] = True
+                break
+        for alias in fishingAlias:
+            if alias in review_text:
+                foundActivities['fishing'] = True
+                break
+                
+    #print('foundActivities are: ', foundActivities) #optional debug info
+    return foundActivities
 
 #Takes in an array of arrays and appends it to the CSV file. Example:
 #[['1', 'activity', 'Assonet River', 'Freetown', 'Assonet River, Freetown, MA 02702, USA', 'description', 'google-map', 'link', 'image', '41.79', '-71.06'],
