@@ -1,6 +1,10 @@
  # maps-mass-river
 
-  IMPORTANT: This script doesn't know what's already in the database. Before uploading one of the CSVs created by this script check to ensure that the info in the CSV is not already present in the database in order to prevent duplicate data from being created. This would most likely happen when running this script against a river that's already been manually entered into the database.
+ Project to help the Massachusetts River Alliance develop their MA rivers mobile app. The app will allow users to search for nearby waterways and to find out what activities are available on or near those waterways.
+
+ This project uses the google places API to search the riverways in Massachusetts and extract the relevant info. That info is then exported in CSV format.
+
+  !!!IMPORTANT!!!: This script doesn't know what's already in the database. Before uploading one of the CSVs created by this script check to ensure that the info in the CSV is not already present in the database in order to prevent duplicate data from being created. This would most likely happen when running this script against a river that's already been manually entered into the database.
 
   Prerequisite: VSCode (https://code.visualstudio.com/download)
 
