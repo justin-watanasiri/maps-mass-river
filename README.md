@@ -66,3 +66,5 @@ In order to retrieve the latest version of the code as I make changes you'll nee
 1. Install homebrew here: https://brew.sh/
 2. Install git with "brew install git"
 3. Get my latest changes with "git fetch" and then "git pull"
+
+Alternatively you can delete the project folder and re-download it from https://github.com/justin-watanasiri/maps-mass-river
