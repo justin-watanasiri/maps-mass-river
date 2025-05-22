@@ -47,11 +47,17 @@ Alternatively, you can achieve the same thing as steps 1-5 by navigating to the 
 
 IMPORTANT: This API key should not be shared with anyone outside of your organization. Definitely make sure that it, and the api_key.txt file are not uploaded to github or any place where people outside of your organization could get access to it
 
-# Running the script
+# Running the script (bulk processing)
+This is the default intended way to run the script
 1. In VSCode, open our project (maps-mass-river-main) folder (File > Open Folder)
 2. Open the "main.py" file
-3. Near the top of the file you will see a variable named "searchString". This string is what the places API will search for. Edit this variable to change the area that this script will search. Possible entries would be 'rivers Medford, MA", 'rivers Somerville, MA" etc
-4. To run this script, go to Run > Run without Debugging
+3. To run this script, go to Run > Run without Debugging
+
+# Running the script (custom search)
+This is an optional way to run the script that gives the user more direct control over the search. But, it only handles on search at a time.
+1. In VSCode, open our project (maps-mass-river-main) folder (File > Open Folder)
+2. Open the "custom_search.py" file
+3. To run this script, go to Run > Run without Debugging
 
 # Getting updated versions of the code
 In order to retrieve the latest version of the code as I make changes you'll need to use git
