@@ -1,13 +1,15 @@
- #maps-mass-river
+ # maps-mass-river
 
- Prerequisite: VSCode (https://code.visualstudio.com/download)
+  IMPORTANT: This script doesn't know what's already in the database. Before uploading one of the CSVs created by this script check to ensure that the info in the CSV is not already present in the database in order to prevent duplicate data from being created. This would most likely happen when running this script against a river that's already been manually entered into the database.
+
+  Prerequisite: VSCode (https://code.visualstudio.com/download)
 
  # Installing Python
 1. Download python here: https://www.python.org/downloads/ (v3.13 recommended) and install
 2. Open VSCode and open a terminal (Terminal > New Terminal)
 3. Verify that python was installed correctly by running the following command in the terminal: "python --version"
 4. Terminal should repond with "Python 3.13" or something similar
-5. If the command in step 3 fails try "python3 --version"
+5. If the command in step 3 fails try "python3 --version". If this succeeds continue to use "python3" instead of "python" while following this guide
 6. If you get an error like "python is not a recognized command" you will have to add python to your PATH
 7. Follow the instructions here for your OS https://realpython.com/add-python-to-path/
 8. Reboot your terminal after following the instructions and try running "python --version" again
