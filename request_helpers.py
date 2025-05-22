@@ -2,7 +2,9 @@ import requests
 from endpoints import *
 from auth import get_api_key
 
+
 apiKey = get_api_key('api_key.txt')
+
 
 def searchNearby():
     headers = {

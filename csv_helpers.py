@@ -1,5 +1,7 @@
 import os
 import csv
+import sys
+
 
 def createCSV(filename):
     # Create data directory if it doesn't exist
@@ -19,9 +21,11 @@ def createCSV(filename):
             # ...create new file logic...
             pass
     else:
-        print(f"File {filepath} already exists")
+        print(f"File {filepath} already exists! Move this file to a different location or delete it. Exiting program.")
+        sys.exit(1)
 
-def processData(rawData):
+
+def processData(rawData, river_id):
     finishedData = []
     for loc in rawData:
         activities = extractActivities(loc)
@@ -30,8 +34,8 @@ def processData(rawData):
         activity_string = ', '.join([key for key, value in activities.items() if value])
 
         locData = [
-            '',  # river_id to be filled in later
-            activity_string,  # activity to be filled in later
+            river_id,
+            activity_string,
             loc['displayName']['text'],
             loc['formattedAddress'].split(',')[1].strip(),  # townName
             loc['formattedAddress'],
@@ -97,16 +101,35 @@ def extractActivities(locData):
     #print('foundActivities are: ', foundActivities) #optional debug info
     return foundActivities
 
+
 #Takes in an array of arrays and appends it to the CSV file. Example:
 #[['1', 'activity', 'Assonet River', 'Freetown', 'Assonet River, Freetown, MA 02702, USA', 'description', 'google-map', 'link', 'image', '41.79', '-71.06'],
 #['2', 'activity2', 'Assonet River2', 'Freetown2', 'Assonet River2, Freetown2, MA 02702, USA', 'description2', 'google-map2', 'link2', 'image2', '41.79', '-71.06']]
 def populateCSV(filename, data):
     filepath = os.path.join(os.path.dirname(__file__), "CSV_Dump", filename)
     # Check if the file exists
-    print('filepath is: ', filepath)
     if os.path.exists(filepath):
         with open(filepath, 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerows(data)
     else:
-        print(f"File {filepath} does not exist. Please create it first.")
+        print(f"File {filepath} does not exist. File should have been created but was not.")
+
+
+def readCSV(filename):
+    filepath = os.path.join(os.path.dirname(__file__), "CSV_Dump", filename)
+    if os.path.exists(filepath):
+        with open(filepath, 'r') as file:
+            reader = csv.reader(file)
+            data = list(reader)
+            return data
+    else:
+        print(f"File {filepath} does not exist.")
+        return None
+    
+    
+def extractRiverList(data):
+    riverList = []
+    for row in data[1:]:  # Skip the header row
+        riverList.append(row[0:2])  
+    return riverList
