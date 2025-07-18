@@ -31,7 +31,12 @@ def processData(rawData, river_id):
         activities = extractActivities(loc)
 
         # Convert dictionary to string of True activities
-        activity_string = ', '.join([key for key, value in activities.items() if value])
+        # If no activities are found, activity_string will be an empty string
+        if activities != '':
+            activity_string = ', '.join([key for key, value in activities.items() if value])
+        else:
+            activity_string = ''
+
 
         locData = [
             river_id,
@@ -61,10 +66,10 @@ def extractActivities(locData):
 
     # The alias/keywords used to search for activities in the reviews. Add/remove aliases as needed.
     hwrAlias = ['hiking', 'hike', 'hiker', 'walk', 'run', 'running', 'walking', 'stroll', 'jog', 'playground', 'trail', 'path']
-    swimAlias = ['swim', 'swimming', 'swimmer']
-    paddlingAlias = ['paddle', 'paddling', 'kayak', 'canoe', 'canoeing']
-    boatingAlias = ['boat', 'boating', 'sail', 'sailing']
-    fishingAlias = ['fish', 'fishing' ]
+    swimAlias = ['swim', 'swimming', 'swimmer', 'wade', 'wading', 'beach']
+    paddlingAlias = ['paddle', 'paddling', 'kayak', 'canoe', 'canoeing', 'raft', 'rafting']
+    boatingAlias = ['boat', 'boating', 'sail', 'sailing', 'surf', 'row', 'tube', 'tubing']
+    fishingAlias = ['fish', 'fishing', 'cast', 'angling']
         
     # Check if reviews exist
     if 'reviews' not in locData:
